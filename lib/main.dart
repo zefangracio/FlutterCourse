@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const Menu(),
-      initialRoute: '/menu',
+      initialRoute: './menu',
       routes: {
         Menu.routeName : (context) => const Menu(),
         DummyPage.routeName :(context) => const DummyPage(),
         TabViewPage.routeName:(context) =>  const TabViewPage(),
-        CalculatorApp.routeName:(context) => const CalculatorApp()
+        CalculatorApp.routeName:(BuildContext context) => const  CalculatorApp()
       },
     );
   }

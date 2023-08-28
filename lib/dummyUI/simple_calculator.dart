@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/dummyUI/dummy_page.dart';
+import 'package:flutter_app/dummyUI/tab_view_page.dart';
+import 'package:flutter_app/menu.dart';
 
 void main() {
   runApp(const CalculatorApp());
@@ -10,10 +13,16 @@ class CalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Simple Calculator',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      //title: 'Simple Calculator',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
+      routes: {
+        Menu.routeName: (context) => const Menu(),
+        DummyPage.routeName :(context) => const DummyPage(),
+        TabViewPage.routeName:(context) =>  const TabViewPage(),
+        CalculatorApp.routeName:(BuildContext context) => const  CalculatorApp()
+      },
       home: CalculatorScreen(),
     );
   }
@@ -25,9 +34,9 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
-  String _display = '';
-  double _firstNumber = 0;
-  double _secondNumber = 0;
+  String _display = '0';
+  double _firstNumber = 0.0;
+  double _secondNumber = 0.0;
   String _operation = "";
 
   void _onNumberPressed(String number) {
@@ -41,6 +50,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       _firstNumber = double.parse(_display);
       _operation = operation;
       _display = '';
+      print(_operation);
+      print(_firstNumber);
     });
   }
 
@@ -56,8 +67,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       } else if (_operation == '/') {
         _display = (_firstNumber / _secondNumber).toString();
       }
-      _firstNumber = 0;
-      _secondNumber = 0;
+      _firstNumber = 0.0;
+      _secondNumber = 0.0;
       _operation = "";
     });
   }
@@ -65,8 +76,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   void _onClearPressed() {
     setState(() {
       _display = '';
-      _firstNumber = 0;
-      _secondNumber = 0;
+      _firstNumber = 0.0;
+      _secondNumber = 0.0;
       _operation = "";
     });
   }
@@ -87,7 +98,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () =>
+              Navigator.of(context).pushReplacementNamed(Menu.routeName),
         ),
         backgroundColor: Colors.white,
       ),
@@ -109,185 +121,81 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 children: [
                   Container(
                     padding: EdgeInsets.all(5),
-                    child: Expanded(
-                      child: Row(
-                        children: [
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(24, 255, 255, 255),
+                    child: Row(
+                      children: [
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(24, 255, 255, 255),
+                            ),
+                            onPressed: () => _onOperationPressed("+"),
+                            child: const Text(
+                              "Add",
+                              style: TextStyle(
+                                color: Colors.black,
                               ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Add",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              )),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(24, 255, 255, 255),
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(24, 255, 255, 255),
+                            ),
+                            onPressed: () => _onOperationPressed("-"),
+                            child: const Text(
+                              "Substract",
+                              style: TextStyle(
+                                color: Colors.black,
                               ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Multiply",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              )),
-                              SizedBox(
-                            width: 10,
-                          ),
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(24, 255, 255, 255),
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(24, 255, 255, 255),
+                            ),
+                            onPressed: () => _onOperationPressed("*"),
+                            child: const Text(
+                              "Multiply",
+                              style: TextStyle(
+                                color: Colors.black,
                               ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Divide",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              )),
-                              SizedBox(
-                            width: 10,
-                          ),
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(24, 255, 255, 255),
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(24, 255, 255, 255),
+                            ),
+                            onPressed: () => _onOperationPressed("/"),
+                            child: const Text(
+                              "Divide",
+                              style: TextStyle(
+                                color: Colors.black,
                               ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Substract",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              )),
-                        ],
-                      ),
+                            )),
+                      ],
                     ),
                   )
                 ],
               ),
             ),
-          Text(
+            Text(
               "History".toUpperCase(),
               style: const TextStyle(
                   color: Color(0xFF2CD483),
                   fontSize: 13,
                   fontWeight: FontWeight.w900),
-            ), 
+            ),
           ],
         ),
       ),
     );
   }
 }      
-//       Column(
-//         children: [
-//           Expanded(
-//             child: Container(
-//               alignment: Alignment.bottomRight,
-//               padding: EdgeInsets.all(16.0),
-//               child: Text(
-//                 _display,
-//                 style: TextStyle(fontSize: 32.0),
-//               ),
-//             ),
-//           ),
-//           Row(
-//             children: [
-//               _buildButton('7'),
-//               _buildButton('8'),
-//               _buildButton('9'),
-//               _buildOperationButton('/'),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               _buildButton('4'),
-//               _buildButton('5'),
-//               _buildButton('6'),
-//               _buildOperationButton('*'),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               _buildButton('1'),
-//               _buildButton('2'),
-//               _buildButton('3'),
-//               _buildOperationButton('-'),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               _buildButton('0'),
-//               _buildButton('.'),
-//               _buildEqualsButton(),
-//               _buildOperationButton('+'),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               _buildClearButton(),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildButton(String text) {
-//     return Expanded(
-//       child: TextButton(
-//         onPressed: () => _onNumberPressed(text),
-//         child: Text(
-//           text,
-//           style: TextStyle(fontSize: 24.0),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildOperationButton(String text) {
-//     return Expanded(
-//       child: TextButton(
-//         onPressed: () => _onOperationPressed(text),
-//         child: Text(
-//           text,
-//           style: TextStyle(fontSize: 24.0, color: Colors.blue),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildEqualsButton() {
-//     return Expanded(
-//       child: TextButton(
-//         onPressed: _onEqualsPressed,
-//         child: Text(
-//           '=',
-//           style: TextStyle(fontSize: 24.0, color: Colors.green),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildClearButton() {
-//     return Expanded(
-//       child: TextButton(
-//         onPressed: _onClearPressed,
-//         child: Text(
-//           'C',
-//           style: TextStyle(fontSize: 24.0, color: Colors.red),
-//         ),
-//       ),
-//     );
-//   }
-// }
