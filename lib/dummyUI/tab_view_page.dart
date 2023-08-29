@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dummyUI/dummy_card.dart';
-import 'package:flutter_app/dummyUI/dummy_row_card.dart';
+import 'package:flutter_app/component/dummy_card.dart';
+import 'package:flutter_app/component/dummy_row_card.dart';
 
 class TabViewPage extends StatelessWidget {
   static const routeName = "/dummyUI/tab_view_page";
@@ -57,11 +57,6 @@ class TabViewPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: TabBarView(
               children: [
-                // Center(
-                //   child: Text("taba1"),
-                // ),
-                
-                
                 ListView.separated(
                   separatorBuilder: (context, index) {
                     return Container(
@@ -73,9 +68,6 @@ class TabViewPage extends StatelessWidget {
                     return const DummyCard();
                   },
                 ),
-                // Center(
-                //   child: Text("taba2"),
-                // ),
                 GridView.count(
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 2,

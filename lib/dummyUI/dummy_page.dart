@@ -2,33 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/dummyUI/tab_view_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'dummy_card.dart';
-import 'dummy_row_card.dart';
+import '../component/app_bar.dart';
+import '../component/dummy_card.dart';
+import '../component/dummy_row_card.dart';
+import '../component/my_text_field.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});
-  static const routeName = "/dummyUI/dummy_page";
+  static const routeName = "./dummyUI/dummy_page";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          backgroundColor: Colors.white,
-          title: const Text(
-            "Dummy UI",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 23,
-            ),
-          ),
-        ),
+        appBar: const MyAppBar(pageTitle: "Dummy UI"),
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -62,7 +48,10 @@ class DummyPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                      ),
                     ],
                   ),
                 ),
@@ -129,6 +118,7 @@ class DummyPage extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.transparent),
                           backgroundColor:
                               const Color.fromRGBO(37, 150, 190, 0.1),
                         ),
@@ -170,26 +160,7 @@ class DummyPage extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color(0xFF0077B6), width: 2.0),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color(0xFF0077B6), width: 2.0),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.email_outlined,
-                            color: Color(0xFF0077B6),
-                          ),
-                          labelText: 'Enter Your Email',
-                          hintText: 'Enter Your Email',
-                        ),
-                      ),
+                      EmailMyTextField(),
                       const SizedBox(height: 8),
                       Text(
                         "image asset, sized box & expanded".toUpperCase(),

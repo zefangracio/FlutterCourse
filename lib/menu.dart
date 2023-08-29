@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/dummyUI/dummy_page.dart';
-import 'package:flutter_app/dummyUI/simple_calculator.dart';
+import 'package:flutter_app/inputValidation/input_validation_page.dart';
+import 'package:flutter_app/simpleCalculator/simple_calculator.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
-  static const routeName = "/menu";
+  static const routeName = "/lib/menu.dart";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +22,7 @@ class Menu extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 12, bottom: 10),
                         child: const Text(
                           "Choose Section",
                           style: TextStyle(
@@ -41,7 +42,7 @@ class Menu extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.only(bottom: 8, top: 8),
+                                padding: const EdgeInsets.only(bottom: 15, top: 8),
                                 child: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +86,7 @@ class Menu extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.only(bottom: 8, top: 8),
+                                padding: const EdgeInsets.only(bottom: 15, top: 8),
                                 child: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -112,6 +113,7 @@ class Menu extends StatelessWidget {
                               Icons.arrow_forward_ios,
                               color: Colors.black,
                             )
+                            
                           ],
                         ),
                       ),
@@ -119,7 +121,9 @@ class Menu extends StatelessWidget {
                         thickness: 1,
                       ),
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(InputValidation.routeName);
+                        },
                         style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: Colors.transparent)),
                         child: Row(
@@ -127,7 +131,7 @@ class Menu extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.only(bottom: 8, top: 8),
+                                padding: const EdgeInsets.only(bottom: 15, top: 8),
                                 child: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,

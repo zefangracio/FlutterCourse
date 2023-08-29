@@ -33,7 +33,7 @@ class DummyCard extends StatelessWidget {
                 Text(
                   "How can I be Flutter Developer Expert?",
                   style: TextStyle(
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                     fontSize: 17,
                   ),
                 ),
@@ -44,17 +44,18 @@ class DummyCard extends StatelessWidget {
                       "Jill Lepore",
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w300,
+                        
                       ),
                     ),
                     SizedBox(height: 8, width: 5),
-                    Icon(Icons.circle, size: 10),
+                    Icon(Icons.circle, size: 5, color: Color.fromARGB(150, 131, 131, 131),),
                     SizedBox(width: 5),
                     Text(
                       "23 May 23",
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
                     SizedBox(
